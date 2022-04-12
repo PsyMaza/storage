@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/psymaza/storage/internal/storage"
 )
@@ -9,5 +10,11 @@ import (
 func main() {
 	st := storage.NewStorage()
 
-	fmt.Println("It's Worked", st)
+	file, err := st.Upload("test.txt", []byte("Hello world!"))
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("It's Worked", file)
 }
