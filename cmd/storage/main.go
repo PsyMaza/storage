@@ -1,20 +1,26 @@
 package main
 
 import (
-	"fmt"
-	"log"
+  "fmt"
+  "log"
 
-	"github.com/psymaza/storage/internal/storage"
+  "github.com/psymaza/storage/internal/storage"
 )
 
 func main() {
-	st := storage.NewStorage()
+  st := storage.NewStorage()
 
-	file, err := st.Upload("test.txt", []byte("Hello world!"))
+  file, err := st.Upload("test.txt", []byte("Hello world!"))
 
-	if err != nil {
-		log.Fatal(err)
-	}
+  if err != nil {
+    log.Fatal(err)
+  }
 
-	fmt.Println("It's Worked", file)
+  data, err := st.GetById(file.ID)
+
+  if err != nil {
+    log.Fatal(err)
+  }
+
+  fmt.Println(data)
 }
